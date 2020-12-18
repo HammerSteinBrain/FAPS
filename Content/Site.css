@@ -1,0 +1,214 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.navbar-inver {
+    background-color: #045FB4;
+    border-color: #045FB4;
+}
+.navbar-nav li a{
+    color: #fff;
+}
+.navbar-brand{
+    color: #fff;
+}
+.navbar-inver a:hover {
+    color: #000;
+    text-decoration: none;
+}
+.form-left-w3l input, .form-right-w3ls input {
+    color: #000;
+    outline: none;
+    font-size: 1em;
+    padding: .8em 1em;
+    margin-bottom: 2em;
+    border: none;
+    margin: 5px 0px 16px;
+    border-bottom: solid 2px #23b7bd;
+    -webkit-appearance: none;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.39);
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+     -ms-transition: all 0.5s ease-in-out;
+    box-shadow: 2px 3px rgba(0, 0, 0, 0.42);
+    width: 91.3%;
+}
+.form-left-w3l p, .form-right-w3ls p, .form-control-w3l p, .form-add-w3ls p {
+    color: #23b7bd;
+    font-size: 17px;
+    letter-spacing: .5px;
+    text-transform: capitalize;
+}
+
+.form-left-w3l {
+    float: left;
+    padding-left: 0px;
+}
+
+.form-right-w3ls {
+    float: right;
+    padding-right: 0px;
+}
+.form-right-w3ls, .form-left-w3l {
+    width: 48%;
+}
+.appointment-w3 {
+    width: 91%;
+    margin: 30px auto 30px;
+    background-color: rgba(0, 0, 0, 0.79);
+    padding: 40px 40px;
+    box-shadow: 2px 3px rgba(0, 0, 0, 0.42);
+}
+.appointment-w3 h2 {
+        color: #23b7bd;
+}
+img {
+    border: 5px solid #555;
+    width: 200px;
+    height: 200px;
+    float: left;
+    padding-left: 0px;
+    margin: 0px 0px 0px 30px;
+}
+.form-right-w3ls-teste {
+    width: 48%;
+    float: right;
+    padding-right: 0px;
+}
+.form-right-w3ls-teste p {
+    color: #23b7bd;
+    font-size: 17px;
+    letter-spacing: .5px;
+    text-transform: capitalize;
+}
+.form-right-w3ls-teste input {
+    color: #000;
+    outline: none;
+    font-size: 1em;
+    padding: .8em 1em;
+    margin-bottom: 2em;
+    border: none;
+    margin: 5px 0px 16px;
+    border-bottom: solid 2px #23b7bd;
+    -webkit-appearance: none;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.39);
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    box-shadow: 2px 3px rgba(0, 0, 0, 0.42);
+    width: 91.3%;
+ }
+
+   /*Carregamento de barra de progresso*/
+.progressbar-wrapper {
+    background: #fff;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.progressbar li {
+    list-style-type: none;
+    width: 30%;
+    float: left;
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    color: #7d7d7d;
+}
+    .progressbar li:before {
+        width: 60px;
+        height: 60px;
+        content: "";
+        line-height: 60px;
+        border: 2px solid #7d7d7d;
+        display: block;
+        text-align: center;
+        margin: 0 auto 3px auto;
+        border-radius: 50%;
+        position: relative;
+        z-index: 2;
+        background-color: #fff;
+    }
+
+    .progressbar li:after {
+        width: 100%;
+        height: 2px;
+        content: '';
+        position: absolute;
+        background-color: #7d7d7d;
+        top: 30px;
+        left: -50%;
+        z-index: 0;
+    }
+
+    .progressbar li:first-child:after {
+        content: none;
+    }
+    .progressbar li.active {
+        color: green;
+        font-weight: bold;
+    }
+
+        .progressbar li.active:before {
+            border-color: #55b776;
+            background: green;
+        }
+
+        .progressbar li.active + li:after {
+            background-color: #55b776;
+        }
+        .progressbar li.active:before {
+            background: #55b776 url(user.svg) no-repeat center center;
+            background-size: 60%;
+        }
+
+    .progressbar li::before {
+        background: #fff url(user.svg) no-repeat center center;
+        background-size: 60%;
+    }
+.progressbar {
+    counter-reset: step;
+}
+
+.progressbar li:before {
+     content: counter(step);
+     counter-increment: step;
+}
+.feedbackText {
+    font-family: Arial, Verdana;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid #b9bdc1;
+    width: 300px;
+    color: #000;
+    height: 93px;
+}
+

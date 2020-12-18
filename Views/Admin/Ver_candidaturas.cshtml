@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Faps.Models.Candidaturas>
+
+@{
+    ViewBag.Title = "Ver_candidaturas";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+@Styles.Render("~/Content/themes/base/jquery-ui.css")
+@Scripts.Render("~/Scripts/jquery-3.5.1.js")
+@Scripts.Render("~/Scripts/jquery-ui.js")
+
+
+<h2>Ver candidaturas para a vaga de @ViewBag.NomeVaga</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status_candidatura)
+        </th>
+        <th>
+            @Html.DisplayName("Nome do Candidato")
+
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+
+                @{
+                    if (item.Status_candidatura == 1)
+                    {
+                        @Html.DisplayName("Candidatura Realizada");
+
+                    }
+                    if (item.Status_candidatura == 2)
+                    {
+                        @Html.DisplayName("Em Analise");
+                    }
+                    if (item.Status_candidatura == 3)
+                    {
+                        @Html.DisplayName("Concluido");
+                    }
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuarios.Usuario)
+            </td>
+            <td>
+                @Html.ActionLink("Analisar Curriculo", "Analisar_curriculo", new { id_candidato = item.Codigo_user }, new { @class = "btn btn-success" }) |
+                <button class="btn btn-warning" onClick="Confirmar_exclusao(@item.Codigo_Candidatura)">Descartar Candidatura</button>
+                
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Excluir</h3>
+            </div>
+
+            <div class="modal-body" id="myModalBodyDiv">
+
+                <input type="hidden" name="Codigo_Candidatura" id="Cod_candidatura" />
+
+                Deseja mesmo deletar a candidatura selecionada?
+
+            </div>
+
+            <div class="modal-footer">
+                <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+
+                <button class="btn btn-danger delete" onClick="Deletar_candidatura(document.getElementById(id='Cod_candidatura').value)">Continuar</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        //abre a modal confirmar exclusao
+        var Confirmar_exclusao = function (Codigo_Candidatura) {
+
+            $(".modal-body #Cod_candidatura").val(Codigo_Candidatura);
+
+            $("#myModal").modal("show");
+        }
+
+        //envia o id para a action [GET]
+        var Deletar_candidatura = function (id_candidatura) {
+
+            window.location.href = "/Admin/Deletar_candidatura?id_candidatura=" + id_candidatura;
+
+        }
+
+
+    </script>
+}

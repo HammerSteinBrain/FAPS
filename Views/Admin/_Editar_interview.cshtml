@@ -1,0 +1,35 @@
+﻿@model Faps.Models.Interview
+
+
+
+@using (Html.BeginForm("Salvar_interview", "Admin", FormMethod.Post))
+{
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Codigo_entrevista)
+    @Html.HiddenFor(model => model.Codigo_user)
+    @Html.HiddenFor(model => model.Entrevistador)
+    @Html.HiddenFor(model => model.Data_criacao)
+    @Html.HiddenFor(model => model.Vaga)
+    @Html.HiddenFor(model => model.Status_interview)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Data_Entrevista, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.Data_Entrevista, new { htmlAttributes = new { type = "datetime" } })
+            @Html.ValidationMessageFor(model => model.Data_Entrevista, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="modal-footer">
+            <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+        </div>
+    </div>
+
+
+</div>
+}

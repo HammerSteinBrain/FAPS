@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Account/_FapsPage.cshtml";
+}
+
+<body>
+    @if (ViewBag.SenhaInvalida == true)
+    {
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal">&times;</a>
+                        <h3 class="modal-title">Login ou Senha inválido</h3>
+                    </div>
+                    <div class="modal-body" id="myModalBodyDiv">
+                        Usuário ou senha incorretos, tente novamente!
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+                        <input type="button" value="OK" class="btn btn-info" onclick='window.location = "@Url.Action("Login", "Account")";' />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <h1 style="color:white;">FAPS</h1>
+    <div class="clear-loading spinner">
+        <span></span>
+    </div>
+    <div class="w3ls-login box box--big">
+        <!-- form starts here -->
+        <form action="Verify" method="post">
+            <div class="agile-field-txt">
+                <br />
+                <label><i class="fa fa-user" aria-hidden="true"></i> Usuário </label>
+                <br />
+                <input type="text" name="Usuario" placeholder="Entre com seu login" id="Name" required="" />
+            </div>
+            <div class="agile-field-txt">
+                <label><i class="fa fa-unlock-alt" aria-hidden="true"></i> Senha </label>
+                <br />
+                <input type="password" name="Senha" placeholder="Entre com sua senha" required="" id="myInput" />
+                <br />
+                <br />
+                <div class="agile_label">
+                    <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+                    <label class="check" for="check3">Mostrar Senha</label>
+                </div>
+                <div class="agile-right">
+                    <a href="#">Esqueceu sua Senha?</a>
+                </div>
+            </div>
+
+            <input type="submit" value="LOGIN">
+        </form>
+    </div>
+    <!-- //form ends here -->
+
+
+    <footer>
+        <!--copyright-->
+        <div class="copy-wthree">
+            <p>
+                © 2020 Ferramenta Auxiliar para Processos Seletivos . Todos os direitos reservados
+            </p>
+        </div>
+        <!--//copyright-->
+    </footer>
+</body>
+
+
+
+
+<!-- script for show password and modal-->
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+
+
+
+    $(document).ready(function () {
+        $('#myModal').modal('show');
+    });
+
+
+
+</script>
+<!-- //end script -->

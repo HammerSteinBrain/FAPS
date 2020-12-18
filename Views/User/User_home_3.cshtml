@@ -1,0 +1,28 @@
+﻿
+@{
+    var Image1Path = "/images/progressBar3.jpg";
+    ViewBag.Title = "Home_3";
+    Layout = "~/Views/Shared/_Layout_user.cshtml";
+}
+
+
+@*<img src="@Image1Path" alt="Status3" width="60%" />*@
+
+<div class="progressbar-wrapper">
+    <ul class="progressbar">
+        <li class="active">Candidatura Realizada</li>
+        <li class="active">Candidatura Em Análise</li>
+        <li class="active">Candidatura Aprovada</li>
+    </ul>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div id="controle-personalizado"></div>
+<h2>
+    Entramos em contato e sua candidatura para a vaga de @ViewBag.vaga, foi aprovada pela nossa equipe!
+    Agora você tem uma entrevista agendada para o dia @ViewBag.dataEntrevista, não esqueça de chegar com pelo menos 30 minutos de antecedência!
+</h2>
+<h2>Boa Sorte!!!</h2>
+

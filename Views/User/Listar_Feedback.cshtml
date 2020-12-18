@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Faps.Models.Feedback>
+
+@{
+    ViewBag.Title = "Listar_Feedback";
+    Layout = "~/Views/Shared/_Layout_user.cshtml";
+}
+
+<h2>Listar Feedbacks</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Feedback1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interview.Entrevistador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interview.Data_Entrevista)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Feedback1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Interview.Entrevistador)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Interview.Data_Entrevista)
+    </td>
+</tr>
+}
+
+</table>

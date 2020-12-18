@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "Cadastro_curriculo";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Account/_RegisterPage.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+    <h1 class="header-w3ls">
+        Cadastre-se
+    </h1>
+    <div class="appointment-w3">
+
+        <form action="Salvar_registro" method="post">
+
+
+            <div class="personal">
+                <h2>Detalhes Pessoais</h2>
+                <div class="form-left-w3l">
+                    <p>Nome</p>
+                    <input type="text" name="Nome" required="" placeholder="Nome">
+                </div>
+                <div class="form-right-w3ls ">
+                    <p>Sobrenome</p>
+                    <input type="text" name="SobreNome" required="" placeholder="Sobrenome">
+                    <div class="clear"></div>
+                </div>
+                <div class="form-left-w3l">
+                    <p>Email</p>
+                    <input type="email" name="Email" placeholder="Mail@example.com" required="">
+                </div>
+                <div class="form-right-w3ls ">
+                    <p>Telefone</p>
+                    <input class="buttom" type="text" name="Telefone" id="phone" required="" placeholder="(12)99999-9999">
+                </div>
+                <div class="form-left-w3l">
+                    <p>Gênero</p>
+                    <select class="form-control" name="Genero">
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                    </select>
+                </div>
+                <div class="form-right-w3ls">
+                    <p>Data de Nascimento</p>
+                    <input id="dateBorn" name="DataNascimento" type="text" placeholder="dd/mm/aaaa" required="">
+                </div>
+
+
+                <div class="clear"></div>
+            </div>
+            <div class="information">
+                <h3> Endereço</h3>
+                <div class="form-add-w3ls">
+                    <p>Endereço</p>
+                    <input type="text" name="Endereco" required="" >
+                </div>
+                <div class="form-left-w3l">
+                    <p>Cidade</p>
+                    <input type="text" name="Cidade" required="" >
+                </div>
+                <div class="form-right-w3ls ">
+                    <p>Estado</p>
+                    <input type="text" name="Estado" required="" >
+                </div>
+                <div class="clear"></div>
+                <div class="form-left-w3l">
+                    <p>CEP</p>
+                    <input type="text" name="CEP" placeholder="00000-000" required="" >
+                </div>
+                <div class="form-right-w3ls">
+                    <p>País</p>
+                    <select class="form-control buttom" name="Pais">
+                        <option value="Brasil">Brasil</option>
+                        <option value="Alemanha">Alemanha</option>
+                        <option value="Canada">Canadá</option>
+                        <option value="EUA">EUA</option>
+                        <option value="Portugal">Portugal</option>
+                    </select>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+
+
+            <div class="education">
+                <h3>Formação Acadêmica</h3>
+
+                <div class="clearfix"></div>
+                <div class="form-left-w3l ">
+                    <p>Curso</p>
+                    <input type="text" name="Curso" required="">
+                </div>
+                <div class="form-right-w3ls">
+                    <p>Estado</p>
+                    <select class="form-control" name="Curso_status">
+                        <option value="concluido">Concluído </option>
+                        <option value="cursando">Cursando </option>
+                        <option value="trancado">Trancado</option>
+                    </select>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+
+            <div class="education">
+                <h3>Experiência Profissional</h3>
+
+                <div class="clearfix"></div>
+                <div class="form-left-w3l ">
+                    <p>Título do Cargo</p>
+                    <input type="text" name="TituloCargo" required="">
+                </div>
+                <div class="form-right-w3ls ">
+                    <p>Empresa</p>
+                    <input type="text" name="Empresa" required="" >
+                </div>
+                <div class="form-left-w3l ">
+                    <p>Data Início</p>
+                    <input id="dateInicio" name="Data_inicio" type="text" placeholder="dd/mm/aaaa" required="" >
+                </div>
+                <div class="form-right-w3ls ">
+                    <p>Data Término</p>
+                    <input id="dateFim" name="DataTermino" type="text" placeholder="dd/mm/aaaa" required="" >
+                </div>
+                <div class="form-control-w3l">
+                    <p>Descrição das atividades</p>
+                    <textarea name="DescricaoAtividades" required></textarea>
+                </div>
+            </div>
+
+            <input type="submit" value="Salvar">
+        </form>
+    </div>
+
+
+    <div class="copy">
+        <p>&copy;2020 Ferramenta Auxiliar para Processos Seletivos. All Rights Reserved</p>
+    </div>
+
+
+    <!-- js -->
+    <script type='text/javascript' src='~/Scripts/jquery-3.5.1.js'></script>
+    <!-- //js -->
+
+    <!-- Calendar -->
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css" />
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script>
+        $(function () {
+            $("#dateInicio,#dateFim,#dateBorn").datepicker();
+        });
+    </script>
+    <!-- //Calendar -->
+
+
+</body>
+</html>
+
+

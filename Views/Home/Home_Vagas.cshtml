@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Faps.Models.Vagas>
+
+@{
+    ViewBag.Title = "Home_Vagas";
+}
+
+<head>
+    <link href="~/styles/font-awesome.css" rel="stylesheet" />
+    <link href="~/styles/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <h1>
+        Empresa Teste - Vagas
+    </h1>
+
+    <h2>
+        <br>
+        <p  class="btn btn-Home">Gosto de alguma vaga?
+        <a href="@Url.Action("Login", "Account")">Faça Seu Login Agora!</a>
+        </p>
+
+        <br>
+        <p  class="btn btn-Home">Não tem uma conta?
+        <a href="@Url.Action("Register", "Account")" >Cadastre Seu Perfil Agora!</a>
+        </p>
+
+    </h2>
+
+    <table class="table">
+        <tr class="vagas">
+            @foreach (var item in Model)
+            {
+                <th class="vagas">
+                    <div class="container">
+                        <div class="banner-text">
+                            <h1> @Html.DisplayFor(modelItem => item.Vaga)</h1>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.Vaga_descricao)
+                            </p>
+                        </div>
+                    </div>
+                </th>
+            }
+        </tr>
+    </table>
+
+</body>
+
+<footer>
+    <!--copyright-->
+    <div class="copy-wthree">
+        <p>
+            © 2020 Ferramenta Auxiliar para Processos Seletivos . Todos os direitos reservados
+        </p>
+    </div>
+    <!--//copyright-->
+</footer>

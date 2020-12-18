@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Faps.Models.Usuarios>
+
+@{
+    ViewBag.Title = "Listar_users";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Controlar usuarios</h2>
+
+<p>
+    <a href="@Url.Action("Cadastrar_usuario", "Admin")" class="btn btn-warning">Cadastrar um novo usuario</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Senha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.role)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Senha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar", "Listar_usuario_to_update", new { id = item.Codigo_user }, new { @class = "btn btn-primary edit" }) |
+                <button class="btn btn-danger delete" onClick="Confirmar_exclusao(@item.Codigo_user)">Deletar Usuario</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Excluir</h3>
+            </div>
+
+            <div class="modal-body" id="myModalBodyDiv">
+
+                <input type="hidden" name="Codigo_user" id="Codigo_user" />
+
+                Deseja mesmo deletar o usuario selecionado?
+
+            </div>
+
+            <div class="modal-footer">
+                <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+
+                <button class="btn btn-danger delete" onClick="Deletar_usuario(document.getElementById(id='Codigo_user').value)">Continuar</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        //abre a modal confirmar exclusao
+        var Confirmar_exclusao = function (Codigo_user) {
+
+            $(".modal-body #Codigo_user").val(Codigo_user);
+
+            $("#myModal").modal("show");
+        }
+
+        //envia o id para a action [GET]
+        var Deletar_usuario = function (Codigo_user) {
+
+            window.location.href = "/Admin/Deletar_user?id=" + Codigo_user;
+
+        }
+
+
+    </script>
+}

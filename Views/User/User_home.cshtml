@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Faps.Models.Vagas>
+
+@{
+    Layout = "~/Views/Shared/_Layout_user.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>home</title>
+</head>
+
+<body>
+
+    @if (ViewBag.Img_on_Cv == false)
+    {
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal">&times;</a>
+                        <h3 class="modal-title">Imagem no Curriculo</h3>
+                    </div>
+
+                    <div class="modal-body" id="myModalBodyDiv">
+                        Coloque uma imagem no seu curriculo!!!
+
+                        Uma imagem no curriculo é opcional, mas aumenta muito as chances de avançar
+                        na analise pelos recrutadores
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+                        <input type="button" value="OK" class="btn btn-success" onclick='window.location = "@Url.Action("Listar_curriculo", "User")";' />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vaga)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vaga_descricao)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vaga)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vaga_descricao)
+                </td>
+                <td>
+                    @Html.ActionLink("Candidatar-se", "Apply", new { id_vaga = item.Codigo_vaga, id_applyer = ViewBag.id_applyer }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</body>
+</html>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#myModal').modal('show');
+        });
+    </script>
+}

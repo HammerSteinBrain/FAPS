@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BancoDados.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Candidaturas">
+          <Key>
+            <PropertyRef Name="Codigo_Candidatura" />
+          </Key>
+          <Property Name="Codigo_Candidatura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo_user" Type="int" Nullable="false" />
+          <Property Name="Status_candidatura" Type="int" Nullable="false" />
+          <Property Name="Codigo_Vaga" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Curriculo">
+          <Key>
+            <PropertyRef Name="codigo_curriculo" />
+          </Key>
+          <Property Name="codigo_curriculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_user" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="SobreNome" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Telefone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataNascimento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Endereco" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Cidade" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CEP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pais" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Curso" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Curso_status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TituloCargo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Empresa" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Data_inicio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataTermino" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescricaoAtividades" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="imageUrl" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Codigo_feedback" />
+          </Key>
+          <Property Name="Codigo_feedback" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo_entrevista" Type="int" Nullable="false" />
+          <Property Name="Feedback" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Interview">
+          <Key>
+            <PropertyRef Name="Codigo_entrevista" />
+          </Key>
+          <Property Name="Codigo_entrevista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo_user" Type="int" Nullable="false" />
+          <Property Name="Entrevistador" Type="varchar" MaxLength="500" />
+          <Property Name="Data_Entrevista" Type="datetime" Nullable="false" />
+          <Property Name="Data_criacao" Type="datetime" Nullable="false" />
+          <Property Name="Vaga" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Status_interview" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Codigo_log" />
+          </Key>
+          <Property Name="Codigo_log" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo_user" Type="int" Nullable="false" />
+          <Property Name="Log" Type="varchar" MaxLength="500" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Codigo_user" />
+          </Key>
+          <Property Name="Codigo_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vagas">
+          <Key>
+            <PropertyRef Name="Codigo_vaga" />
+          </Key>
+          <Property Name="Codigo_vaga" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vaga" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Vaga_descricao" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK_Candidaturas_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candidaturas" Type="Self.Candidaturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Codigo_user" />
+            </Principal>
+            <Dependent Role="Candidaturas">
+              <PropertyRef Name="Codigo_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Candidaturas_vaga">
+          <End Role="Vagas" Type="Self.Vagas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candidaturas" Type="Self.Candidaturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vagas">
+              <PropertyRef Name="Codigo_vaga" />
+            </Principal>
+            <Dependent Role="Candidaturas">
+              <PropertyRef Name="Codigo_Vaga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curriculos_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Curriculo" Type="Self.Curriculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Codigo_user" />
+            </Principal>
+            <Dependent Role="Curriculo">
+              <PropertyRef Name="codigo_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Interview1">
+          <End Role="Interview" Type="Self.Interview" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Interview">
+              <PropertyRef Name="Codigo_entrevista" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="Codigo_entrevista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interview_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Codigo_user" />
+            </Principal>
+            <Dependent Role="Interview">
+              <PropertyRef Name="Codigo_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_log">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Codigo_user" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Codigo_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BancoDadosStoreContainer">
+          <EntitySet Name="Candidaturas" EntityType="Self.Candidaturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curriculo" EntityType="Self.Curriculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interview" EntityType="Self.Interview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vagas" EntityType="Self.Vagas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Candidaturas_Usuarios" Association="Self.FK_Candidaturas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Candidaturas" EntitySet="Candidaturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Candidaturas_vaga" Association="Self.FK_Candidaturas_vaga">
+            <End Role="Vagas" EntitySet="Vagas" />
+            <End Role="Candidaturas" EntitySet="Candidaturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curriculos_Usuarios" Association="Self.FK_Curriculos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Curriculo" EntitySet="Curriculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Interview1" Association="Self.FK_Feedback_Interview1">
+            <End Role="Interview" EntitySet="Interview" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_Usuarios" Association="Self.FK_Interview_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Interview" EntitySet="Interview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_log" Association="Self.FK_usuario_log">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BancoDados" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Candidaturas">
+          <Key>
+            <PropertyRef Name="Codigo_Candidatura" />
+          </Key>
+          <Property Name="Codigo_Candidatura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo_user" Type="Int32" Nullable="false" />
+          <Property Name="Status_candidatura" Type="Int32" Nullable="false" />
+          <Property Name="Codigo_Vaga" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Candidaturas_Usuarios" FromRole="Candidaturas" ToRole="Usuarios" />
+          <NavigationProperty Name="Vagas" Relationship="Self.FK_Candidaturas_vaga" FromRole="Candidaturas" ToRole="Vagas" />
+        </EntityType>
+        <EntityType Name="Curriculo">
+          <Key>
+            <PropertyRef Name="codigo_curriculo" />
+          </Key>
+          <Property Name="codigo_curriculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_user" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Curriculos_Usuarios" FromRole="Curriculo" ToRole="Usuarios" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SobreNome" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Genero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataNascimento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Endereco" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Cidade" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CEP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pais" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Curso" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Curso_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TituloCargo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Empresa" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Data_inicio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataTermino" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DescricaoAtividades" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="imageUrl" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Codigo_user" />
+          </Key>
+          <Property Name="Codigo_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Candidaturas" Relationship="Self.FK_Candidaturas_Usuarios" FromRole="Usuarios" ToRole="Candidaturas" />
+          <NavigationProperty Name="Curriculo" Relationship="Self.FK_Curriculos_Usuarios" FromRole="Usuarios" ToRole="Curriculo" />
+          <NavigationProperty Name="Interview" Relationship="BancoDados.FK_Interview_Usuarios" FromRole="Usuarios" ToRole="Interview" />
+          <NavigationProperty Name="Log" Relationship="BancoDados.FK_usuario_log" FromRole="Usuarios" ToRole="Log" />
+        </EntityType>
+        <EntityType Name="Vagas">
+          <Key>
+            <PropertyRef Name="Codigo_vaga" />
+          </Key>
+          <Property Name="Codigo_vaga" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vaga" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Vaga_descricao" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Candidaturas" Relationship="Self.FK_Candidaturas_vaga" FromRole="Vagas" ToRole="Candidaturas" />
+        </EntityType>
+        <Association Name="FK_Candidaturas_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candidaturas" Type="Self.Candidaturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Codigo_user" />
+            </Principal>
+            <Dependent Role="Candidaturas">
+              <PropertyRef Name="Codigo_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Candidaturas_vaga">
+          <End Role="Vagas" Type="Self.Vagas" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candidaturas" Type="Self.Candidaturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vagas">
+              <PropertyRef Name="Codigo_vaga" />
+            </Principal>
+            <Dependent Role="Candidaturas">
+              <PropertyRef Name="Codigo_Vaga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curriculos_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Curriculo" Type="Self.Curriculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Codigo_user" />
+            </Principal>
+            <Dependent Role="Curriculo">
+              <PropertyRef Name="codigo_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FAPSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Candidaturas" EntityType="Self.Candidaturas" />
+          <EntitySet Name="Curriculo" EntityType="Self.Curriculo" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Vagas" EntityType="Self.Vagas" />
+          <AssociationSet Name="FK_Candidaturas_Usuarios" Association="Self.FK_Candidaturas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Candidaturas" EntitySet="Candidaturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Candidaturas_vaga" Association="Self.FK_Candidaturas_vaga">
+            <End Role="Vagas" EntitySet="Vagas" />
+            <End Role="Candidaturas" EntitySet="Candidaturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curriculos_Usuarios" Association="Self.FK_Curriculos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Curriculo" EntitySet="Curriculo" />
+          </AssociationSet>
+          <EntitySet Name="Interview" EntityType="BancoDados.Interview" />
+          <AssociationSet Name="FK_Interview_Usuarios" Association="BancoDados.FK_Interview_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Interview" EntitySet="Interview" />
+          </AssociationSet>
+          <EntitySet Name="Log" EntityType="BancoDados.Log" />
+          <AssociationSet Name="FK_usuario_log" Association="BancoDados.FK_usuario_log">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <EntitySet Name="Feedback" EntityType="BancoDados.Feedback" />
+          <AssociationSet Name="FK_Feedback_Interview1" Association="BancoDados.FK_Feedback_Interview1">
+            <End Role="Interview" EntitySet="Interview" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Interview">
+          <Key>
+            <PropertyRef Name="Codigo_entrevista" />
+          </Key>
+          <Property Name="Codigo_entrevista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo_user" Type="Int32" Nullable="false" />
+          <Property Name="Entrevistador" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Data_Entrevista" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Data_criacao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Usuarios" Relationship="BancoDados.FK_Interview_Usuarios" FromRole="Interview" ToRole="Usuarios" />
+          <Property Name="Vaga" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Status_interview" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Feedback" Relationship="BancoDados.FK_Feedback_Interview1" FromRole="Interview" ToRole="Feedback" />
+        </EntityType>
+        <Association Name="FK_Interview_Usuarios">
+          <End Type="BancoDados.Usuarios" Role="Usuarios" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BancoDados.Interview" Role="Interview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Codigo_user" />
+            </Principal>
+            <Dependent Role="Interview">
+              <PropertyRef Name="Codigo_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Codigo_log" />
+          </Key>
+          <Property Name="Codigo_log" Type="Int32" Nullable="false" />
+          <Property Name="Codigo_user" Type="Int32" Nullable="false" />
+          <Property Name="Log1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Usuarios" Relationship="BancoDados.FK_usuario_log" FromRole="Log" ToRole="Usuarios" />
+        </EntityType>
+        <Association Name="FK_usuario_log">
+          <End Type="BancoDados.Usuarios" Role="Usuarios" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BancoDados.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Codigo_user" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Codigo_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Codigo_feedback" />
+          </Key>
+          <Property Name="Codigo_feedback" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo_entrevista" Type="Int32" Nullable="false" />
+          <Property Name="Feedback1" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Interview" Relationship="BancoDados.FK_Feedback_Interview1" FromRole="Feedback" ToRole="Interview" />
+        </EntityType>
+        <Association Name="FK_Feedback_Interview1">
+          <End Type="BancoDados.Interview" Role="Interview" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BancoDados.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Interview">
+              <PropertyRef Name="Codigo_entrevista" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="Codigo_entrevista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BancoDadosStoreContainer" CdmEntityContainer="FAPSEntities">
+          <EntitySetMapping Name="Candidaturas">
+            <EntityTypeMapping TypeName="BancoDados.Candidaturas">
+              <MappingFragment StoreEntitySet="Candidaturas">
+                <ScalarProperty Name="Codigo_Candidatura" ColumnName="Codigo_Candidatura" />
+                <ScalarProperty Name="Codigo_user" ColumnName="Codigo_user" />
+                <ScalarProperty Name="Status_candidatura" ColumnName="Status_candidatura" />
+                <ScalarProperty Name="Codigo_Vaga" ColumnName="Codigo_Vaga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curriculo">
+            <EntityTypeMapping TypeName="BancoDados.Curriculo">
+              <MappingFragment StoreEntitySet="Curriculo">
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="DescricaoAtividades" ColumnName="DescricaoAtividades" />
+                <ScalarProperty Name="DataTermino" ColumnName="DataTermino" />
+                <ScalarProperty Name="Data_inicio" ColumnName="Data_inicio" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="TituloCargo" ColumnName="TituloCargo" />
+                <ScalarProperty Name="Curso_status" ColumnName="Curso_status" />
+                <ScalarProperty Name="Curso" ColumnName="Curso" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SobreNome" ColumnName="SobreNome" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="codigo_curriculo" ColumnName="codigo_curriculo" />
+                <ScalarProperty Name="codigo_user" ColumnName="codigo_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="BancoDados.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Codigo_user" ColumnName="Codigo_user" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vagas">
+            <EntityTypeMapping TypeName="BancoDados.Vagas">
+              <MappingFragment StoreEntitySet="Vagas">
+                <ScalarProperty Name="Codigo_vaga" ColumnName="Codigo_vaga" />
+                <ScalarProperty Name="Vaga" ColumnName="Vaga" />
+                <ScalarProperty Name="Vaga_descricao" ColumnName="Vaga_descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interview">
+            <EntityTypeMapping TypeName="BancoDados.Interview">
+              <MappingFragment StoreEntitySet="Interview">
+                <ScalarProperty Name="Status_interview" ColumnName="Status_interview" />
+                <ScalarProperty Name="Vaga" ColumnName="Vaga" />
+                <ScalarProperty Name="Data_criacao" ColumnName="Data_criacao" />
+                <ScalarProperty Name="Data_Entrevista" ColumnName="Data_Entrevista" />
+                <ScalarProperty Name="Entrevistador" ColumnName="Entrevistador" />
+                <ScalarProperty Name="Codigo_user" ColumnName="Codigo_user" />
+                <ScalarProperty Name="Codigo_entrevista" ColumnName="Codigo_entrevista" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="BancoDados.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Log1" ColumnName="Log" />
+                <ScalarProperty Name="Codigo_user" ColumnName="Codigo_user" />
+                <ScalarProperty Name="Codigo_log" ColumnName="Codigo_log" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedback">
+            <EntityTypeMapping TypeName="BancoDados.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Feedback1" ColumnName="Feedback" />
+                <ScalarProperty Name="Codigo_entrevista" ColumnName="Codigo_entrevista" />
+                <ScalarProperty Name="Codigo_feedback" ColumnName="Codigo_feedback" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

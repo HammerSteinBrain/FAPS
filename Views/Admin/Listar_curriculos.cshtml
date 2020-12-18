@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Faps.Models.Curriculo>
+
+@{
+    ViewBag.Title = "Listar_curriculos";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Listar curriculos</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nome do Candidato")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+                @Html.DisplayFor(modelItem => item.SobreNome)
+            </td>
+            <td>
+                @Html.ActionLink("Ver Curriculo", "Detalhes_curriculo", new { id = item.codigo_user }, new { @class = "btn btn-primary edit" }) |
+                <button class="btn btn-warning" onClick="Confirmar_exclusao(@item.codigo_user)">Descartar Curriculo</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Excluir</h3>
+            </div>
+
+            <div class="modal-body" id="myModalBodyDiv">
+
+                <input type="hidden" name="Cod_user" id="Cod_user" />
+
+                Deseja mesmo deletar o curriculo selecionado?
+
+            </div>
+
+            <div class="modal-footer">
+
+                <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+
+                <button class="btn btn-danger delete" onClick="Deletar_curriculo(document.getElementById(id='Cod_user').value)">Continuar</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        //abre a modal confirmar exclusao
+        var Confirmar_exclusao = function (codigo_user) {
+
+            $(".modal-body #Cod_user").val(codigo_user);
+
+            $("#myModal").modal("show");
+        }
+
+        //envia o id para a action [GET]
+        var Deletar_curriculo = function (id_codigo_user) {
+
+            window.location.href = "/Admin/Deletar_curriculo?id_codigo_user=" + id_codigo_user;
+
+        }
+
+
+    </script>
+}

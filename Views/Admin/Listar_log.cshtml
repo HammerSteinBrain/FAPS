@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Faps.Models.Log>
+
+@{
+    ViewBag.Title = "Listar_log";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Log do sistema</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Log1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Log1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+    </tr>
+}
+
+</table>

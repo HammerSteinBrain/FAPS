@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FAPSModelStoreContainer" CdmEntityContainer="FAPSEntities2">
+    <EntitySetMapping Name="Vagas">
+      <EntityTypeMapping TypeName="FAPSModel.Vagas">
+        <MappingFragment StoreEntitySet="Vagas">
+          <ScalarProperty Name="Codigo_vaga" ColumnName="Codigo_vaga" />
+          <ScalarProperty Name="Vaga" ColumnName="Vaga" />
+          <ScalarProperty Name="Vaga_descricao" ColumnName="Vaga_descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

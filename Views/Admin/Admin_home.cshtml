@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Faps.Models.Vagas>
+
+@{
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin_home</title>
+</head>
+<body>
+    <p>
+        <a href="@Url.Action("Cadastrar_vaga", "Admin")" class="btn btn-warning">Cadastrar uma vaga</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vaga)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vaga_descricao)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vaga)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vaga_descricao)
+                </td>
+                <td style="word-wrap: break-word">
+                    @Html.ActionLink("Ver Candidaturas", "Ver_candidaturas", new { id = item.Codigo_vaga }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Alterar vaga", "Listar_vaga_to_update", new { id_vaga = item.Codigo_vaga }, new { @class = "btn btn-primary edit" }) |
+                    <button class="btn btn-danger delete" onClick="Confirmar_exclusao(@item.Codigo_vaga)">Deletar Vaga</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+
+
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Excluir</h3>
+            </div>
+
+            <div class="modal-body" id="myModalBodyDiv">
+
+                <input type="hidden" name="Codigo_vaga" id="Codigo_vaga" />
+
+                Deseja mesmo deletar a vaga selecionada?
+
+            </div>
+
+            <div class="modal-footer">
+                <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+
+                <button class="btn btn-danger delete" onClick="Deletar_vaga(document.getElementById(id='Codigo_vaga').value)">Continuar</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        //abre a modal confirmar exclusao
+        var Confirmar_exclusao = function (Codigo_vaga) {
+
+            $(".modal-body #Codigo_vaga").val(Codigo_vaga);
+
+            $("#myModal").modal("show");
+        }
+
+        //envia o id para a action [GET]
+        var Deletar_vaga = function (id_candidatura) {
+
+            window.location.href = "/Admin/Deletar_vaga?id=" + id_candidatura;
+
+        }
+
+
+    </script>
+}

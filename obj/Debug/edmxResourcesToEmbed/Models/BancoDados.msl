@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BancoDadosStoreContainer" CdmEntityContainer="FAPSEntities">
+    <EntitySetMapping Name="Candidaturas">
+      <EntityTypeMapping TypeName="BancoDados.Candidaturas">
+        <MappingFragment StoreEntitySet="Candidaturas">
+          <ScalarProperty Name="Codigo_Candidatura" ColumnName="Codigo_Candidatura" />
+          <ScalarProperty Name="Codigo_user" ColumnName="Codigo_user" />
+          <ScalarProperty Name="Status_candidatura" ColumnName="Status_candidatura" />
+          <ScalarProperty Name="Codigo_Vaga" ColumnName="Codigo_Vaga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Curriculo">
+      <EntityTypeMapping TypeName="BancoDados.Curriculo">
+        <MappingFragment StoreEntitySet="Curriculo">
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="DescricaoAtividades" ColumnName="DescricaoAtividades" />
+          <ScalarProperty Name="DataTermino" ColumnName="DataTermino" />
+          <ScalarProperty Name="Data_inicio" ColumnName="Data_inicio" />
+          <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+          <ScalarProperty Name="TituloCargo" ColumnName="TituloCargo" />
+          <ScalarProperty Name="Curso_status" ColumnName="Curso_status" />
+          <ScalarProperty Name="Curso" ColumnName="Curso" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+          <ScalarProperty Name="Genero" ColumnName="Genero" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SobreNome" ColumnName="SobreNome" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="codigo_curriculo" ColumnName="codigo_curriculo" />
+          <ScalarProperty Name="codigo_user" ColumnName="codigo_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="BancoDados.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Codigo_user" ColumnName="Codigo_user" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vagas">
+      <EntityTypeMapping TypeName="BancoDados.Vagas">
+        <MappingFragment StoreEntitySet="Vagas">
+          <ScalarProperty Name="Codigo_vaga" ColumnName="Codigo_vaga" />
+          <ScalarProperty Name="Vaga" ColumnName="Vaga" />
+          <ScalarProperty Name="Vaga_descricao" ColumnName="Vaga_descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Interview">
+      <EntityTypeMapping TypeName="BancoDados.Interview">
+        <MappingFragment StoreEntitySet="Interview">
+          <ScalarProperty Name="Status_interview" ColumnName="Status_interview" />
+          <ScalarProperty Name="Vaga" ColumnName="Vaga" />
+          <ScalarProperty Name="Data_criacao" ColumnName="Data_criacao" />
+          <ScalarProperty Name="Data_Entrevista" ColumnName="Data_Entrevista" />
+          <ScalarProperty Name="Entrevistador" ColumnName="Entrevistador" />
+          <ScalarProperty Name="Codigo_user" ColumnName="Codigo_user" />
+          <ScalarProperty Name="Codigo_entrevista" ColumnName="Codigo_entrevista" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log">
+      <EntityTypeMapping TypeName="BancoDados.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Log1" ColumnName="Log" />
+          <ScalarProperty Name="Codigo_user" ColumnName="Codigo_user" />
+          <ScalarProperty Name="Codigo_log" ColumnName="Codigo_log" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feedback">
+      <EntityTypeMapping TypeName="BancoDados.Feedback">
+        <MappingFragment StoreEntitySet="Feedback">
+          <ScalarProperty Name="Feedback1" ColumnName="Feedback" />
+          <ScalarProperty Name="Codigo_entrevista" ColumnName="Codigo_entrevista" />
+          <ScalarProperty Name="Codigo_feedback" ColumnName="Codigo_feedback" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,35 @@
+﻿@model Faps.Models.Interview
+
+@{
+    ViewBag.Title = "Agendar_entrevista";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Agendar entrevista do candidato @ViewBag.Candidato</h2>
+
+@using (Html.BeginForm("Marcar_entrevista", "Admin", FormMethod.Post))
+{
+<div class="form-horizontal">
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Data_Entrevista, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Data_Entrevista, new { htmlAttributes = new { type = "datetime-local" } })
+            @Html.ValidationMessageFor(model => model.Data_Entrevista, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.Codigo_user)
+    @Html.HiddenFor(model => model.Entrevistador)
+    @Html.HiddenFor(model => model.Data_criacao)
+    @Html.HiddenFor(model => model.Vaga)
+    @Html.HiddenFor(model => model.Status_interview)
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agendar" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
