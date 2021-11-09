@@ -1,4 +1,4 @@
 # FAPS
 Ferramenta Auxiliar para Processos Seletivos
 
-<a href="FAPS/TGIIRodrigoRosa.pdf" class="image fit"><img src="images/TGII.jpg" alt=""></a>
+* [Tragalho de graduação - Rodrigo Rosa ](https://github.com/HammerSteinBrain/FAPS/blob/main/TGIIRodrigoRosa.pdf) - Artigo sobre o programa desenvolvido
